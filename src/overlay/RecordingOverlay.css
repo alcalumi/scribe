@@ -1,24 +1,29 @@
+@import "@fontsource-variable/hanken-grotesk";
 @import "../styles/theme.css";
 
 :root {
-  --s-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  /* Near-opaque app surface (theme.css --color-background at 98%). Auto-flips
-     light/dark with --color-background, so no dark-mode override is needed. */
-  --s-surface: color-mix(in srgb, var(--color-background) 98%, transparent);
-  /* Accent = logo pink; flips automatically via --color-logo-primary. */
-  --s-accent: var(--color-logo-primary);
-  --s-accent-soft: color-mix(
-    in srgb,
-    var(--color-background-ui) 16%,
-    transparent
-  );
-  /* Neutrals. Hairlines reuse the app's mid-gray at low opacity — same vocabulary
-     as the app's border-mid-gray/* utilities. muted/faint are overlay-specific
-     secondary/tertiary text grays (no theme equivalent). */
-  --s-muted: #6e6e6e;
-  --s-faint: #9a9a9a;
-  --s-border: color-mix(in srgb, var(--color-mid-gray) 22%, transparent);
-  --s-hair: color-mix(in srgb, var(--color-mid-gray) 12%, transparent);
+  --s-font:
+    "Hanken Grotesk Variable", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+  /* Porcelana: near-opaque surface + 1px line + a soft, tight shadow. Every
+     value derives from theme.css tokens, so light/dark flip automatically. */
+  --s-surface: color-mix(in srgb, var(--color-surface) 98%, transparent);
+  --s-border: var(--color-line);
+  --s-ink: var(--color-text);
+  --s-muted: var(--color-ink-soft);
+  --s-faint: color-mix(in srgb, var(--color-ink-soft) 72%, transparent);
+  /* Accent = tinta estilográfica (working states, caret). Wax = lacre, the
+     sacred "Scribe is listening" red — used ONLY by the live waveform. */
+  --s-accent: var(--color-accent);
+  --s-wax: var(--color-wax);
+  --s-accent-soft: color-mix(in srgb, var(--color-accent) 14%, transparent);
+  --s-hair: color-mix(in srgb, var(--color-text) 7%, transparent);
+  /* Soft shadow, deliberately small: the native overlay window (overlay.rs)
+     leaves only a few px of padding around the card, so larger blurs/offsets
+     would clip visibly at the window bounds. */
+  --s-shadow:
+    0 1px 2px rgba(30, 26, 20, 0.08),
+    0 2px 6px rgba(30, 26, 20, 0.07);
 
   /* Card geometry — single source of truth for the visible overlay sizes. The
      native overlay window (overlay.rs) is sized from these: it must be at least
@@ -36,18 +41,11 @@
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Accent uses the lighter logo pink in dark — reads better on the dark
-       surface than the deeper UI pink. */
-    --s-accent-soft: color-mix(
-      in srgb,
-      var(--color-logo-primary) 20%,
-      transparent
-    );
-    --s-muted: #a3a09a;
-    --s-faint: #6f6c66;
-    /* Hairlines flip to the near-white text token for contrast on dark. */
-    --s-border: color-mix(in srgb, var(--color-text) 12%, transparent);
-    --s-hair: color-mix(in srgb, var(--color-text) 8%, transparent);
+    /* El tintero needs a slightly stronger shadow to separate from dark
+       desktops; everything else flips via the theme tokens. */
+    --s-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.35),
+      0 2px 6px rgba(0, 0, 0, 0.28);
   }
 }
 
@@ -115,10 +113,13 @@
   margin: 0;
 }
 
-/* Shared base card. Flat: theme surface + hairline border, no shadow or blur. */
+/* Shared base card — the porcelain pill: surface + line + soft shadow. At rest
+   it is a true pill (21px = half of the 42px boxed height); the open Live panel
+   relaxes to a card radius. State changes (width/radius) transition in the
+   150–250ms band; the movement communicates state, never decorates. */
 .scard {
   width: var(--ov-pill-w);
-  border-radius: 24px;
+  border-radius: 21px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -126,31 +127,40 @@
   transform-origin: bottom center;
   background: var(--s-surface);
   border: 1px solid var(--s-border);
-  /* Flat: no drop shadow, no backdrop blur/saturate (was a glassy gradient look). */
+  box-shadow: var(--s-shadow);
   /* pop-in plays on mount; morph (width/radius) is a transition */
-  animation: scard-pop 460ms cubic-bezier(0.22, 1, 0.36, 1);
+  animation: scard-pop 220ms ease-out;
   transition:
-    width 460ms cubic-bezier(0.22, 1, 0.36, 1),
-    border-radius 460ms cubic-bezier(0.22, 1, 0.36, 1);
+    width 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 250ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform, width, opacity;
 }
 @keyframes scard-pop {
   from {
     opacity: 0;
     /* Scale from the anchored edge (transform-origin) — never translate past it. */
-    transform: scale(0.92);
+    transform: scale(0.96);
   }
   to {
     opacity: 1;
     transform: none;
   }
 }
+/* Crossfade-only mount, used under prefers-reduced-motion. */
+@keyframes scard-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .scard.leaving {
   opacity: 0;
-  transform: scale(0.96);
+  transform: scale(0.98);
   transition:
-    opacity 240ms ease,
-    transform 300ms ease;
+    opacity 200ms ease,
+    transform 220ms ease;
 }
 .scard.open {
   width: var(--ov-open-w);
@@ -158,7 +168,6 @@
 }
 .scard.working {
   width: var(--ov-work-w);
-  border-radius: 18px;
 }
 
 /* Compact form: two fixed widths so the recording→working change is an animatable
@@ -180,8 +189,8 @@
   grid-template-rows: 0fr;
   opacity: 0;
   transition:
-    grid-template-rows 440ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 260ms ease;
+    grid-template-rows 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 200ms ease;
 }
 .scard.open .stext {
   grid-template-rows: 1fr;
@@ -223,6 +232,7 @@
 .stext-cap .tentative {
   color: inherit;
 }
+/* Caret — the "ink being written" cursor, in fountain-pen accent. */
 .scaret {
   display: inline-block;
   width: 2px;
@@ -239,8 +249,8 @@
   }
 }
 
-/* base row — dot (left) | waveform (center) | timer + cancel (right).
-   Same structure for pill & panel; the dot stays anchored left in both. */
+/* base row — plumín (left) | waveform (center) | timer + cancel (right).
+   Same structure for pill & panel; the mark stays anchored left in both. */
 .sbase {
   height: var(--ov-base-h);
   padding: 0 10px;
@@ -253,7 +263,7 @@
 }
 .sbase-l {
   display: flex;
-  padding-left: 5px;
+  padding-left: 3px;
   align-items: center;
   justify-self: start;
 }
@@ -263,21 +273,13 @@
   gap: 10px;
   justify-self: end;
 }
-.sdot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--s-accent);
+/* Plumín — quiet brand presence in ink-soft; it never animates. The waveform
+   carries all the state color (wax = listening, accent = working). */
+.smark {
+  width: 18px;
+  height: 18px;
+  color: var(--s-muted);
   flex: none;
-  animation: sdot-pulse 1.9s infinite;
-}
-@keyframes sdot-pulse {
-  0% {
-    box-shadow: 0 0 0 0 var(--s-accent-soft);
-  }
-  70% {
-    box-shadow: 0 0 0 7px transparent;
-  }
 }
 .stimer {
   font-size: 12px;
@@ -285,13 +287,15 @@
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
   opacity: 0;
-  transition: opacity 240ms ease 80ms;
+  transition: opacity 200ms ease 60ms;
 }
 .scard.open .stimer {
   opacity: 1;
 }
 
-/* Waveform — simple reactive bars, themed; heights set inline from mic levels. */
+/* Waveform — the one living piece of the product. Reactive bars in lacre (wax):
+   when the user sees this red, Scribe is listening. Heights come inline from mic
+   levels; the transition keeps the motion fluid without lagging the voice. */
 .swave {
   display: flex;
   align-items: center;
@@ -305,8 +309,8 @@
   min-height: 3px;
   max-height: 18px;
   border-radius: 2px;
-  background: var(--s-accent);
-  transition: height 80ms linear;
+  background: var(--s-wax);
+  transition: height 90ms ease-out;
 }
 .sx {
   width: 22px;
@@ -335,26 +339,48 @@
 }
 .sx:hover {
   background: var(--s-accent-soft);
-  color: var(--color-text);
+  color: var(--s-ink);
   transform: scale(1.05);
 }
 .sx:active {
   transform: scale(0.95);
 }
 
-/* working state (transcribing / polishing) — spinner + label */
-.sspinner {
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  border: 2px solid var(--s-hair);
-  border-top-color: var(--s-accent);
-  animation: sspin 0.7s linear infinite;
+/* working state (transcribing / polishing) — the wave settles into fountain-pen
+   accent with a subtle pulse: no longer listening, now writing. */
+.spulse {
+  display: flex;
+  align-items: center;
+  gap: 2.5px;
+  height: 14px;
   flex: none;
 }
-@keyframes sspin {
-  to {
-    transform: rotate(1turn);
+.spulse i {
+  width: 3px;
+  border-radius: 2px;
+  background: var(--s-accent);
+  animation: spulse-breathe 1.5s ease-in-out infinite;
+}
+.spulse i:nth-child(1) {
+  height: 6px;
+}
+.spulse i:nth-child(2) {
+  height: 11px;
+  animation-delay: 0.2s;
+}
+.spulse i:nth-child(3) {
+  height: 8px;
+  animation-delay: 0.4s;
+}
+@keyframes spulse-breathe {
+  0%,
+  100% {
+    transform: scaleY(0.6);
+    opacity: 0.65;
+  }
+  50% {
+    transform: none;
+    opacity: 1;
   }
 }
 .swork-label {
@@ -366,4 +392,34 @@
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* Reduced motion: state changes crossfade; nothing scales, slides or pulses.
+   The mic-level bars stay (they are signal, not decoration) but stop easing. */
+@media (prefers-reduced-motion: reduce) {
+  .scard {
+    animation: scard-fade 200ms ease-out;
+    transition: none;
+  }
+  .scard.leaving {
+    transform: none;
+  }
+  .stext {
+    transition: opacity 200ms ease;
+  }
+  .swave i {
+    transition: none;
+  }
+  .spulse i {
+    animation: none;
+    opacity: 0.8;
+  }
+  .scaret {
+    animation: none;
+  }
+  .sx,
+  .sx:hover,
+  .sx:active {
+    transform: none;
+  }
 }

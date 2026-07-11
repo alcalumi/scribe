@@ -5,7 +5,7 @@ import { ChevronDown } from "lucide-react";
 import type { ModelInfo } from "@/bindings";
 import type { ModelCardStatus } from "./ModelCard";
 import ModelCard, { isLegacySource } from "./ModelCard";
-import HandyTextLogo from "../icons/HandyTextLogo";
+import ScribeMark from "./ScribeMark";
 import { useModelStore } from "../../stores/modelStore";
 
 interface OnboardingProps {
@@ -144,20 +144,22 @@ const Onboarding: React.FC<OnboardingProps> = ({ onModelSelected }) => {
   };
 
   return (
-    <div className="h-screen w-screen flex flex-col p-6 gap-4 inset-0">
-      <div className="flex flex-col items-center gap-2 shrink-0">
-        <HandyTextLogo width={200} />
-        <p className="text-text/70 max-w-md font-medium mx-auto">
+    <div className="h-screen w-screen flex flex-col p-6 gap-6 bg-background">
+      {/* Cabecera quieta: el plumín en tinta + instrucción en Hanken. El momento
+          serif de la marca vive en la pantalla de bienvenida, no aquí. */}
+      <div className="flex flex-col items-center gap-3 shrink-0 pt-2 select-none">
+        <ScribeMark className="w-9 h-9 text-text" />
+        <p className="text-ink-soft max-w-md mx-auto text-center">
           {t("onboarding.subtitle")}
         </p>
       </div>
 
-      <div className="max-w-[600px] w-full mx-auto text-center flex-1 flex flex-col min-h-0">
+      <div className="max-w-[600px] w-full mx-auto flex-1 flex flex-col min-h-0 overflow-y-auto">
         <div className="space-y-6 pb-6">
           {models.some((m: ModelInfo) => m.is_downloaded) && (
             <div className="space-y-3">
               <div className="text-left">
-                <h2 className="text-sm font-medium text-text/60">
+                <h2 className="text-sm font-semibold text-ink-soft">
                   {t("onboarding.existingModelsTitle")}
                 </h2>
               </div>
@@ -179,7 +181,7 @@ const Onboarding: React.FC<OnboardingProps> = ({ onModelSelected }) => {
           {downloadable.length > 0 && (
             <div className="space-y-3">
               <div className="text-left">
-                <h2 className="text-sm font-medium text-text/60">
+                <h2 className="text-sm font-semibold text-ink-soft">
                   {t("onboarding.downloadModelsTitle")}
                 </h2>
               </div>
@@ -219,7 +221,7 @@ const Onboarding: React.FC<OnboardingProps> = ({ onModelSelected }) => {
                 <button
                   type="button"
                   onClick={() => setShowAll((v) => !v)}
-                  className="flex items-center justify-center gap-1.5 mx-auto py-1 text-sm font-medium text-text/60 hover:text-text transition-colors"
+                  className="flex items-center justify-center gap-1.5 mx-auto py-1 px-2 rounded-lg text-sm font-medium text-ink-soft hover:text-text transition-colors duration-150 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
                 >
                   {showAll
                     ? t("onboarding.showFewerModels")

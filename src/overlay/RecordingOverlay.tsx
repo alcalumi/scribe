@@ -150,6 +150,18 @@ const RecordingOverlay: React.FC = () => {
     `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
 
   // ---- Shared building blocks (one visual language for every overlay form) ----
+  // Plumín (inline copy of brand/scribe-mark.svg so it inherits currentColor):
+  // the quiet, still brand mark on the left of every pill form.
+  const mark = (
+    <svg className="smark" viewBox="0 0 512 512" aria-hidden="true">
+      <path
+        fill="currentColor"
+        fillRule="evenodd"
+        d="M256 470C236 416 198 372 176 318C158 276 146 240 146 204C146 160 150 122 166 106C190 86 222 80 256 80C290 80 322 86 346 106C362 122 366 160 366 204C366 240 354 276 336 318C314 372 276 416 256 470ZM250 271.4A30 30 0 1 1 262 271.4L258.5 448L256 460L253.5 448Z"
+      />
+    </svg>
+  );
+
   const waveform = (
     <div className="swave">
       {levels.map((v, i) => (
@@ -180,13 +192,11 @@ const RecordingOverlay: React.FC = () => {
     </button>
   );
 
-  // dot (left) | waveform (center) | timer + cancel (right) — same structure for
-  // pill & panel, so the Live morph is a pure width change.
+  // plumín (left) | waveform (center) | timer + cancel (right) — same structure
+  // for pill & panel, so the Live morph is a pure width change.
   const listeningRow = (showTimer: boolean, showCancel: boolean) => (
     <div className="sbase">
-      <div className="sbase-l">
-        <span className="sdot" />
-      </div>
+      <div className="sbase-l">{mark}</div>
       {waveform}
       <div className="sbase-r">
         {showTimer && <span className="stimer">{fmtTime(elapsed)}</span>}
@@ -195,12 +205,17 @@ const RecordingOverlay: React.FC = () => {
     </div>
   );
 
-  // spinner (left) | label (center) | cancel (right) — same 3-zone grid as the
-  // listening row, so the label is centered.
+  // pulsing accent wave (left) | label (center) | cancel (right) — same 3-zone
+  // grid as the listening row, so the label is centered. The wave settling from
+  // wax into accent is the transcribing/processing signal.
   const workingRow = (label: string, showCancel: boolean) => (
     <div className="sbase">
       <div className="sbase-l">
-        <span className="sspinner" />
+        <span className="spulse" aria-hidden="true">
+          <i />
+          <i />
+          <i />
+        </span>
       </div>
       <span className="swork-label">{label}</span>
       <div className="sbase-r">{showCancel && cancelBtn}</div>

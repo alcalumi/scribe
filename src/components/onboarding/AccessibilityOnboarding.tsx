@@ -10,7 +10,7 @@ import {
 import { toast } from "sonner";
 import { commands } from "@/bindings";
 import { useSettingsStore } from "@/stores/settingsStore";
-import HandyTextLogo from "../icons/HandyTextLogo";
+import ScribeMark from "./ScribeMark";
 import { Keyboard, Mic, Check, Loader2 } from "lucide-react";
 
 interface AccessibilityOnboardingProps {
@@ -284,18 +284,18 @@ const AccessibilityOnboarding: React.FC<AccessibilityOnboardingProps> = ({
   // Still checking platform/initial permissions
   if (isChecking) {
     return (
-      <div className="h-screen w-screen flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-text/50" />
+      <div className="h-screen w-screen flex items-center justify-center bg-background">
+        <Loader2 className="w-8 h-8 animate-spin text-ink-soft" />
       </div>
     );
   }
 
-  // All permissions granted - show success briefly
+  // All permissions granted - show success briefly (calm, no fanfare)
   if (allGranted) {
     return (
-      <div className="h-screen w-screen flex flex-col items-center justify-center gap-4">
-        <div className="p-4 rounded-full bg-emerald-500/20">
-          <Check className="w-12 h-12 text-emerald-400" />
+      <div className="h-screen w-screen flex flex-col items-center justify-center gap-4 bg-background">
+        <div className="p-4 rounded-full bg-accent/10">
+          <Check className="w-10 h-10 text-accent" />
         </div>
         <p className="text-lg font-medium text-text">
           {t("onboarding.permissions.allGranted")}
@@ -304,51 +304,67 @@ const AccessibilityOnboarding: React.FC<AccessibilityOnboardingProps> = ({
     );
   }
 
+  // CTA primario Porcelana: tinta estilográfica, filo redondeado, foco visible.
+  const ctaClasses =
+    "px-4 py-2 rounded-lg bg-accent hover:bg-accent-strong text-white text-sm font-medium transition-colors duration-150 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 focus-visible:ring-offset-1 focus-visible:ring-offset-background";
+
+  const grantedRow = (
+    <div className="flex items-center gap-2 text-accent text-sm font-medium">
+      <Check className="w-4 h-4" />
+      {t("onboarding.permissions.granted")}
+    </div>
+  );
+
+  const waitingRow = (
+    <div className="flex items-center gap-2 text-ink-soft text-sm">
+      <Loader2 className="w-4 h-4 animate-spin" />
+      {t("onboarding.permissions.waiting")}
+    </div>
+  );
+
   // Show permissions request screen
   return (
-    <div className="h-screen w-screen flex flex-col p-6 gap-6 items-center justify-center">
-      <div className="flex flex-col items-center gap-2">
-        <HandyTextLogo width={200} />
+    <div className="h-screen w-screen flex flex-col p-6 gap-10 items-center justify-center bg-background">
+      {/* Momento de marca (el único de la app junto a «Acerca de»): plumín +
+          wordmark en EB Garamond. "Scribe" es nombre propio, nunca se traduce. */}
+      <div className="flex flex-col items-center gap-4 select-none">
+        <ScribeMark className="w-11 h-11 text-text" />
+        {/* eslint-disable-next-line i18next/no-literal-string -- nombre de marca */}
+        <h1 className="font-serif text-5xl leading-none text-text">Scribe</h1>
       </div>
 
       <div className="max-w-md w-full flex flex-col items-center gap-4">
-        <div className="text-center mb-2">
+        <div className="text-center mb-1">
           <h2 className="text-xl font-semibold text-text mb-2">
             {t("onboarding.permissions.title")}
           </h2>
-          <p className="text-text/70">
+          <p className="text-ink-soft">
             {t("onboarding.permissions.description")}
           </p>
         </div>
 
         {/* Microphone Permission Card */}
         {showMicrophonePermission && (
-          <div className="w-full p-4 rounded-lg bg-white/5 border border-mid-gray/20">
-            <div className="flex items-center gap-4">
-              <div className="p-3 rounded-full bg-logo-primary/20 shrink-0">
-                <Mic className="w-6 h-6 text-logo-primary" />
+          <div className="w-full p-4 rounded-xl bg-surface border border-line">
+            <div className="flex items-start gap-4">
+              <div className="p-3 rounded-full bg-accent/10 shrink-0">
+                <Mic className="w-5 h-5 text-accent" />
               </div>
               <div className="flex-1 min-w-0">
                 <h3 className="font-medium text-text">
                   {t("onboarding.permissions.microphone.title")}
                 </h3>
-                <p className="text-sm text-text/60 mb-3">
+                <p className="text-sm text-ink-soft mb-3">
                   {t("onboarding.permissions.microphone.description")}
                 </p>
                 {permissions.microphone === "granted" ? (
-                  <div className="flex items-center gap-2 text-emerald-400 text-sm">
-                    <Check className="w-4 h-4" />
-                    {t("onboarding.permissions.granted")}
-                  </div>
+                  grantedRow
                 ) : permissions.microphone === "waiting" ? (
-                  <div className="flex items-center gap-2 text-text/50 text-sm">
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    {t("onboarding.permissions.waiting")}
-                  </div>
+                  waitingRow
                 ) : (
                   <button
                     onClick={handleGrantMicrophone}
-                    className="px-4 py-2 rounded-lg bg-logo-primary hover:bg-logo-primary/90 text-white text-sm font-medium transition-colors"
+                    className={ctaClasses}
                   >
                     {isWindows
                       ? t("accessibility.openSettings")
@@ -362,32 +378,26 @@ const AccessibilityOnboarding: React.FC<AccessibilityOnboardingProps> = ({
 
         {/* Accessibility Permission Card */}
         {showAccessibilityPermission && (
-          <div className="w-full p-4 rounded-lg bg-white/5 border border-mid-gray/20">
-            <div className="flex items-center gap-4">
-              <div className="p-3 rounded-full bg-logo-primary/20 shrink-0">
-                <Keyboard className="w-6 h-6 text-logo-primary" />
+          <div className="w-full p-4 rounded-xl bg-surface border border-line">
+            <div className="flex items-start gap-4">
+              <div className="p-3 rounded-full bg-accent/10 shrink-0">
+                <Keyboard className="w-5 h-5 text-accent" />
               </div>
               <div className="flex-1 min-w-0">
                 <h3 className="font-medium text-text">
                   {t("onboarding.permissions.accessibility.title")}
                 </h3>
-                <p className="text-sm text-text/60 mb-3">
+                <p className="text-sm text-ink-soft mb-3">
                   {t("onboarding.permissions.accessibility.description")}
                 </p>
                 {permissions.accessibility === "granted" ? (
-                  <div className="flex items-center gap-2 text-emerald-400 text-sm">
-                    <Check className="w-4 h-4" />
-                    {t("onboarding.permissions.granted")}
-                  </div>
+                  grantedRow
                 ) : permissions.accessibility === "waiting" ? (
-                  <div className="flex items-center gap-2 text-text/50 text-sm">
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    {t("onboarding.permissions.waiting")}
-                  </div>
+                  waitingRow
                 ) : (
                   <button
                     onClick={handleGrantAccessibility}
-                    className="px-4 py-2 rounded-lg bg-logo-primary hover:bg-logo-primary/90 text-white text-sm font-medium transition-colors"
+                    className={ctaClasses}
                   >
                     {t("onboarding.permissions.grant")}
                   </button>

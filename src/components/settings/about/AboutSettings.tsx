@@ -11,6 +11,9 @@ import { ShowWhatsNewOnUpdate } from "../ShowWhatsNewOnUpdate";
 import { ThemeSelector } from "../ThemeSelector";
 import { LogDirectory } from "../debug";
 
+const SCRIBE_REPO_URL = "https://github.com/alcalumi/scribe";
+const HANDY_REPO_URL = "https://github.com/cjpais/Handy";
+
 export const AboutSettings: React.FC = () => {
   const { t } = useTranslation();
   const [version, setVersion] = useState("");
@@ -22,46 +25,31 @@ export const AboutSettings: React.FC = () => {
         setVersion(appVersion);
       } catch (error) {
         console.error("Failed to get app version:", error);
-        setVersion("0.1.2");
+        setVersion("1.0.0");
       }
     };
 
     fetchVersion();
   }, []);
 
-  const handleDonateClick = async () => {
-    try {
-      await openUrl("https://handy.computer/donate");
-    } catch (error) {
-      console.error("Failed to open donate link:", error);
-    }
-  };
-
   return (
     <div className="max-w-3xl w-full mx-auto space-y-6">
+      {/* Brand header — one of the few serif moments allowed in the app */}
+      <div className="px-4 pt-2 flex items-baseline gap-3">
+        {/* eslint-disable-next-line i18next/no-literal-string */}
+        <h1 className="font-serif text-2xl font-normal text-text">Scribe</h1>
+        {version && (
+          <span className="text-sm text-ink-soft tabular-nums">
+            {/* eslint-disable-next-line i18next/no-literal-string */}
+            <span>v{version}</span>
+          </span>
+        )}
+      </div>
+
       <SettingsGroup title={t("settings.about.title")}>
         <AppLanguageSelector descriptionMode="tooltip" grouped={true} />
         <ThemeSelector descriptionMode="tooltip" grouped={true} />
-        <SettingContainer
-          title={t("settings.about.version.title")}
-          description={t("settings.about.version.description")}
-          grouped={true}
-        >
-          {/* eslint-disable-next-line i18next/no-literal-string */}
-          <span className="text-sm font-mono">v{version}</span>
-        </SettingContainer>
-
         <ShowWhatsNewOnUpdate descriptionMode="tooltip" grouped={true} />
-
-        <SettingContainer
-          title={t("settings.about.supportDevelopment.title")}
-          description={t("settings.about.supportDevelopment.description")}
-          grouped={true}
-        >
-          <Button variant="primary" size="md" onClick={handleDonateClick}>
-            {t("settings.about.supportDevelopment.button")}
-          </Button>
-        </SettingContainer>
 
         <SettingContainer
           title={t("settings.about.sourceCode.title")}
@@ -71,7 +59,7 @@ export const AboutSettings: React.FC = () => {
           <Button
             variant="secondary"
             size="md"
-            onClick={() => openUrl("https://github.com/cjpais/Handy")}
+            onClick={() => openUrl(SCRIBE_REPO_URL)}
           >
             {t("settings.about.sourceCode.button")}
           </Button>
@@ -88,10 +76,27 @@ export const AboutSettings: React.FC = () => {
           grouped={true}
           layout="stacked"
         >
-          <div className="text-sm text-mid-gray">
+          <div className="text-sm text-ink-soft">
             {t("settings.about.acknowledgments.ggml.details")}
           </div>
         </SettingContainer>
+
+        {/* Attribution to the upstream project Scribe is built on.
+            TODO(i18n): move this copy to a locale key (e.g.
+            settings.about.acknowledgments.handy) once the locales land. */}
+        {/* eslint-disable i18next/no-literal-string */}
+        <div className="px-4 py-3 text-sm text-ink-soft">
+          Hecho sobre{" "}
+          <button
+            type="button"
+            onClick={() => openUrl(HANDY_REPO_URL)}
+            className="text-accent underline underline-offset-2 cursor-pointer transition-colors duration-150 hover:text-accent-strong outline-none focus-visible:ring-2 focus-visible:ring-accent/60 rounded-sm"
+          >
+            Handy
+          </button>{" "}
+          (MIT) — gracias, CJ Pais.
+        </div>
+        {/* eslint-enable i18next/no-literal-string */}
       </SettingsGroup>
     </div>
   );
