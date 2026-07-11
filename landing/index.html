@@ -9,8 +9,10 @@
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
   <meta property="og:title" content="Scribe — Habla. Ya está escrito." />
   <meta property="og:description" content="Dictado por voz 100% local para Mac y Windows. Sin nube, sin suscripción. 19 € una vez." />
-  <meta property="og:image" content="assets/og-image.png" />
+  <meta property="og:image" content="https://scribe-alcalumis-projects.vercel.app/assets/og-image.png" />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://scribe-alcalumis-projects.vercel.app/" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#f5f3ef" />
   <link rel="preload" href="assets/fonts/eb-garamond-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
@@ -41,10 +43,11 @@
     </p>
 
     <div class="cta-row" id="descargar">
-      <a class="btn btn-primary" id="cta-main" href="https://github.com/alcalumi/scribe/releases/latest">Descargar para Mac</a>
-      <a class="btn btn-ghost" id="cta-alt" href="https://github.com/alcalumi/scribe/releases/latest">también para Windows&nbsp;→</a>
+      <a class="btn btn-primary" id="cta-main" href="https://github.com/alcalumi/scribe/releases/download/v1.0.0/Scribe_1.0.0_aarch64.dmg">Descargar para Mac</a>
+      <a class="btn btn-ghost" id="cta-alt" href="https://github.com/alcalumi/scribe/releases/download/v1.0.0/Scribe_1.0.0_x64-setup.exe">también para Windows&nbsp;→</a>
     </div>
-    <p class="fine">Early access: hoy gratis · después 19&nbsp;€, una sola vez · para siempre</p>
+    <p class="fine">Early access: hoy gratis · después 19&nbsp;€, una sola vez · para siempre<br />
+    <a class="fine-link" href="https://github.com/alcalumi/scribe/releases/latest" rel="noopener">Todas las descargas</a> — Mac Intel, Windows ARM y Linux incluidos</p>
 
     <!-- La píldora: el overlay de Scribe, vivo -->
     <div class="demo" aria-label="Demostración: Scribe escuchando y escribiendo">
@@ -107,8 +110,11 @@
       palabras apareciendo donde tienen que aparecer.
     </p>
     <figure class="shot">
-      <img src="assets/app-light.png" alt="Ventana de ajustes de Scribe en modo claro: porcelana, tipografía serena y una barra lateral con el plumín." width="1280" height="860" loading="lazy" />
-      <figcaption>Los ajustes, en porcelana. El modo oscuro es el tintero.</figcaption>
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="assets/app-dark.png" />
+        <img src="assets/app-light.png" alt="Ventana de ajustes de Scribe: porcelana, tipografía serena y una barra lateral con el plumín." width="980" height="700" loading="lazy" />
+      </picture>
+      <figcaption>Los ajustes, tal cual son. En claro, porcelana; en oscuro, el tintero.</figcaption>
     </figure>
     <ul class="quiet-features">
       <li>Español e inglés de fábrica, y más de veinte idiomas con los modelos Whisper</li>

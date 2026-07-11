@@ -1,0 +1,5 @@
+.vercel
+
+# Interno del agente (no publicar)
+.claude/logs/
+tasks/

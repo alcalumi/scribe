@@ -5,18 +5,21 @@ document.documentElement.classList.add("js");
 
 // ── Detección de SO: el botón principal ofrece tu plataforma ──
 const RELEASES = "https://github.com/alcalumi/scribe/releases/latest";
+const V = "1.0.0";
+const A = `https://github.com/alcalumi/scribe/releases/download/v${V}`;
 const DL = {
-  mac: { href: RELEASES, label: "Descargar para Mac" },
-  win: { href: RELEASES, label: "Descargar para Windows" },
+  mac: { href: `${A}/Scribe_${V}_aarch64.dmg`, label: "Descargar para Mac" },
+  win: { href: `${A}/Scribe_${V}_x64-setup.exe`, label: "Descargar para Windows" },
 };
 const esWindows = /Windows/i.test(navigator.userAgent);
 const main = document.getElementById("cta-main");
 const alt = document.getElementById("cta-alt");
-if (esWindows && main && alt) {
-  main.textContent = DL.win.label;
-  main.href = DL.win.href;
-  alt.textContent = "también para Mac →";
-  alt.href = DL.mac.href;
+if (main && alt) {
+  const [primero, segundo] = esWindows ? [DL.win, DL.mac] : [DL.mac, DL.win];
+  main.textContent = primero.label;
+  main.href = primero.href;
+  alt.textContent = esWindows ? "también para Mac →" : "también para Windows →";
+  alt.href = segundo.href;
 }
 
 // ── La píldora: escucha (lacre) y escribe ──
