@@ -42,3 +42,7 @@ blob-report/
 
 # Nix build output
 result
+
+# Interno del agente (no publicar)
+.claude/logs/
+tasks/
