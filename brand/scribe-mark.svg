@@ -1,0 +1,21 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Scribe">
+  <!-- Plumín Scribe. Un solo path con fill-rule evenodd: el respiradero y la
+       hendidura (que parte la punta en dos gavilanes) son recortes. -->
+  <path fill="currentColor" fill-rule="evenodd" d="
+    M256 470
+    C 236 416 198 372 176 318
+    C 158 276 146 240 146 204
+    C 146 160 150 122 166 106
+    C 190 86 222 80 256 80
+    C 290 80 322 86 346 106
+    C 362 122 366 160 366 204
+    C 366 240 354 276 336 318
+    C 314 372 276 416 256 470
+    Z
+    M250 271.4
+    A30 30 0 1 1 262 271.4
+    L258.5 448
+    L256 460
+    L253.5 448
+    Z" />
+</svg>

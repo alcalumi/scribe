@@ -1,5 +1,5 @@
 {
-  "name": "handy-app",
+  "name": "scribe",
   "private": true,
   "version": "0.9.1",
   "type": "module",
@@ -20,6 +20,9 @@
     "postinstall": "bun scripts/check-nix-deps.ts"
   },
   "dependencies": {
+    "@fontsource-variable/eb-garamond": "^5.2.7",
+    "@fontsource-variable/hanken-grotesk": "^5.2.8",
+    "@fontsource/eb-garamond": "^5.2.7",
     "@tailwindcss/vite": "^4.1.16",
     "@tauri-apps/api": "^2.10.0",
     "@tauri-apps/plugin-autostart": "~2.5.1",

@@ -301,6 +301,18 @@
     url = "https://registry.npmjs.org/@floating-ui/utils/-/utils-0.2.10.tgz";
     hash = "sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==";
   };
+  "@fontsource-variable/eb-garamond@5.2.7" = fetchurl {
+    url = "https://registry.npmjs.org/@fontsource-variable/eb-garamond/-/eb-garamond-5.2.7.tgz";
+    hash = "sha512-TbR+Pun4k5g85lgdxRNSbWka5vJgi9pzdFzFswgf7/7NRhKssvoumft1+ZGz3n91YYet96JcnjWrgPGGj6JTzg==";
+  };
+  "@fontsource-variable/hanken-grotesk@5.2.8" = fetchurl {
+    url = "https://registry.npmjs.org/@fontsource-variable/hanken-grotesk/-/hanken-grotesk-5.2.8.tgz";
+    hash = "sha512-K7hu09ZKReBc7EifRLeM4K94NZBrxFEg0nGcISmVwlFQOJo4EmYkLXTWEwr5JcNW4z2hr5zy8vLS2sxC8JDmrQ==";
+  };
+  "@fontsource/eb-garamond@5.2.7" = fetchurl {
+    url = "https://registry.npmjs.org/@fontsource/eb-garamond/-/eb-garamond-5.2.7.tgz";
+    hash = "sha512-V42tTlHDbnDo0+lENnXKWMx63Llq6Gfl2l7ozkoeRQN60S0jm6hEgCLlOT/5YyKAN9QZ0e2ofpy0rGKlz9jBrw==";
+  };
   "@humanfs/core@0.19.1" = fetchurl {
     url = "https://registry.npmjs.org/@humanfs/core/-/core-0.19.1.tgz";
     hash = "sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==";

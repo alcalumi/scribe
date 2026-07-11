@@ -1,0 +1,22 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Icono de bandeja (template image): silueta monocroma del plumín con
+       recortes engordados para leerse a 16-32px. macOS lo tiñe según el tema;
+       exportar como PNG negro con alfa. -->
+  <path fill="#000000" fill-rule="evenodd" d="
+    M256 482
+    C 234 424 192 378 168 320
+    C 148 275 136 238 136 200
+    C 136 152 140 112 158 94
+    C 184 72 218 66 256 66
+    C 294 66 328 72 354 94
+    C 372 112 376 152 376 200
+    C 376 238 364 275 344 320
+    C 320 378 278 424 256 482
+    Z
+    M246 285
+    A38 38 0 1 1 266 285
+    L261 442
+    L256 458
+    L251 442
+    Z" />
+</svg>

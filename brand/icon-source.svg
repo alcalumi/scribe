@@ -1,0 +1,36 @@
+<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <!-- Icono de app Scribe: baldosa de porcelana con el plumín en tinta.
+       Esquinas redondeadas al estilo squircle de macOS (radio 22.37%). -->
+  <defs>
+    <linearGradient id="glaze" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F8F6F2"/>
+      <stop offset="1" stop-color="#EBE7E0"/>
+    </linearGradient>
+    <linearGradient id="ink" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#33393F"/>
+      <stop offset="1" stop-color="#23262B"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1024" height="1024" rx="229" fill="url(#glaze)"/>
+  <rect x="6" y="6" width="1012" height="1012" rx="223" fill="none"
+        stroke="#28221C" stroke-opacity="0.08" stroke-width="12"/>
+  <g transform="translate(512 542) scale(1.55) translate(-256 -275)">
+    <path fill="url(#ink)" fill-rule="evenodd" d="
+      M256 470
+      C 236 416 198 372 176 318
+      C 158 276 146 240 146 204
+      C 146 160 150 122 166 106
+      C 190 86 222 80 256 80
+      C 290 80 322 86 346 106
+      C 362 122 366 160 366 204
+      C 366 240 354 276 336 318
+      C 314 372 276 416 256 470
+      Z
+      M250 271.4
+      A30 30 0 1 1 262 271.4
+      L258.5 448
+      L256 460
+      L253.5 448
+      Z" />
+  </g>
+</svg>

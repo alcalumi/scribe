@@ -1,36 +1,84 @@
-/* Handy Colors */
+/* Scribe — paleta «Porcelana» */
 
 :root {
   /* Palette source of truth. Each themed color is defined once as a
      light/dark pair; the active tokens below and the `data-theme` overrides
-     in App.css reference these, so a hex value lives in exactly one place. */
-  --light-color-text: #0f0f0f;
-  --light-color-background: #fbfbfb;
-  --light-color-logo-primary: #faa2ca;
-  --light-color-logo-stroke: #382731;
+     in App.css reference these, so a color value lives in exactly one place.
 
-  --dark-color-text: #fbfbfb;
-  --dark-color-background: #2c2b29;
-  --dark-color-logo-primary: #f28cbb;
-  --dark-color-logo-stroke: #fad1ed;
+     Light = porcelana: near-neutral bone white; warmth lives in the ink,
+     the type and the accents, never in the background itself.
+     Dark = el tintero: deep blue-black ink. */
+
+  /* — Light: porcelana — */
+  --light-color-text: oklch(0.235 0.011 55);
+  --light-color-background: oklch(0.9651 0.0045 84);
+  --light-color-surface: oklch(0.9832 0.0028 84);
+  --light-color-line: oklch(0.885 0.007 80);
+  --light-color-ink-soft: oklch(0.475 0.014 60);
+  --light-color-accent: oklch(0.385 0.055 255);
+  --light-color-accent-strong: oklch(0.33 0.055 255);
+  --light-color-accent-soft: oklch(0.72 0.045 250);
+  --light-color-wax: oklch(0.545 0.155 35);
+  --light-color-brass: oklch(0.62 0.085 85);
+  --light-color-logo-primary: oklch(0.72 0.045 250);
+  --light-color-logo-stroke: oklch(0.235 0.011 55);
+
+  /* — Dark: el tintero — */
+  --dark-color-text: oklch(0.925 0.007 84);
+  --dark-color-background: oklch(0.2075 0.012 262);
+  --dark-color-surface: oklch(0.245 0.013 262);
+  --dark-color-line: oklch(0.315 0.012 262);
+  --dark-color-ink-soft: oklch(0.71 0.012 80);
+  --dark-color-accent: oklch(0.5 0.07 252);
+  --dark-color-accent-strong: oklch(0.56 0.075 252);
+  --dark-color-accent-soft: oklch(0.56 0.05 252);
+  --dark-color-wax: oklch(0.64 0.14 35);
+  --dark-color-brass: oklch(0.72 0.08 85);
+  --dark-color-logo-primary: oklch(0.72 0.06 252);
+  --dark-color-logo-stroke: oklch(0.925 0.007 84);
 
   /* Tokens that do not change between light and dark */
-  --color-background-ui: #da5893;
-  --color-text-stroke: #f6f6f6;
-  --color-mid-gray: #808080;
+  --color-text-stroke: oklch(0.9651 0.0045 84);
+  --color-mid-gray: oklch(0.58 0.012 70);
+
+  /* Typography */
+  --font-sans:
+    "Hanken Grotesk Variable", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  --font-display: "EB Garamond Variable", "EB Garamond", Georgia, serif;
 
   /* Active palette — defaults to light, follows the OS via the media query
      below, or is forced by `data-theme` (see App.css). */
   --color-text: var(--light-color-text);
   --color-background: var(--light-color-background);
+  --color-surface: var(--light-color-surface);
+  --color-line: var(--light-color-line);
+  --color-ink-soft: var(--light-color-ink-soft);
+  --color-accent: var(--light-color-accent);
+  --color-accent-strong: var(--light-color-accent-strong);
+  --color-accent-soft: var(--light-color-accent-soft);
+  --color-wax: var(--light-color-wax);
+  --color-brass: var(--light-color-brass);
   --color-logo-primary: var(--light-color-logo-primary);
   --color-logo-stroke: var(--light-color-logo-stroke);
+
+  /* Primary action surface. Kept as a legacy alias — most components refer
+     to it via the Tailwind `background-ui` utility. */
+  --color-background-ui: var(--color-accent);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --color-text: var(--dark-color-text);
     --color-background: var(--dark-color-background);
+    --color-surface: var(--dark-color-surface);
+    --color-line: var(--dark-color-line);
+    --color-ink-soft: var(--dark-color-ink-soft);
+    --color-accent: var(--dark-color-accent);
+    --color-accent-strong: var(--dark-color-accent-strong);
+    --color-accent-soft: var(--dark-color-accent-soft);
+    --color-wax: var(--dark-color-wax);
+    --color-brass: var(--dark-color-brass);
     --color-logo-primary: var(--dark-color-logo-primary);
     --color-logo-stroke: var(--dark-color-logo-stroke);
   }
