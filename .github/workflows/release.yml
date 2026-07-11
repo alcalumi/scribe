@@ -73,10 +73,9 @@ jobs:
       platform: ${{ matrix.platform }}
       target: ${{ matrix.target }}
       build-args: ${{ matrix.args }}
-      # Sin certificados de Apple/Windows todavía: macOS va con firma ad-hoc
-      # (signingIdentity "-") y Windows sin firma. Reactivar cuando existan los
-      # secrets APPLE_* (Developer ID) o un certificado de Windows.
-      sign-binaries: false
+      # macOS: firma Developer ID + notarización (secrets APPLE_* del repo).
+      # Windows sigue sin firma de código (SmartScreen) hasta tener certificado.
+      sign-binaries: true
       asset-prefix: "scribe"
       upload-artifacts: false
       release-id: ${{ needs.create-release.outputs.release-id }}
