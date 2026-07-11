@@ -21,8 +21,8 @@ carta, tinta estilográfica, lacre. Digital por fuera, analógico por dentro.
 - **Cálido**: cercano, con humor fino. Nunca corporativo, nunca influencer.
 
 Lo que Scribe **no es**: una "solución de productividad impulsada por IA".
-Jamás usamos: *revolucionario, disruptivo, potencia tu flujo, lleva X al
-siguiente nivel, solución líder*. La palabra "IA" solo aparece si es necesaria
+Jamás usamos: _revolucionario, disruptivo, potencia tu flujo, lleva X al
+siguiente nivel, solución líder_. La palabra "IA" solo aparece si es necesaria
 para explicar algo técnico.
 
 ## Voz y tono (español)
@@ -34,11 +34,11 @@ para explicar algo técnico.
 - La privacidad se cuenta con hechos, no con miedo: «Tu voz no sale de tu
   ordenador. No porque lo prometamos: porque no hay servidor al que enviarla.»
 
-| ❌ No | ✅ Sí |
-|---|---|
-| «¡Desbloquea tu productividad con dictado impulsado por IA!» | «Escribe a la velocidad a la que piensas.» |
-| «Error 403: permiso denegado» | «macOS aún no nos deja escribir por ti. Se arregla en Ajustes → Accesibilidad.» |
-| «Suscríbete para acceder a funciones premium» | «Se compra una vez. Es tuyo para siempre.» |
+| ❌ No                                                        | ✅ Sí                                                                           |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------- |
+| «¡Desbloquea tu productividad con dictado impulsado por IA!» | «Escribe a la velocidad a la que piensas.»                                      |
+| «Error 403: permiso denegado»                                | «macOS aún no nos deja escribir por ti. Se arregla en Ajustes → Accesibilidad.» |
+| «Suscríbete para acceder a funciones premium»                | «Se compra una vez. Es tuyo para siempre.»                                      |
 
 ## Nombre
 
@@ -62,16 +62,16 @@ papel.
 La calidez la ponen la tipografía y los acentos; el fondo es porcelana casi
 neutra, no crema. El modo oscuro es **el tintero**: azul-negro de tinta.
 
-| Token | Claro | Oscuro | Uso |
-|---|---|---|---|
-| `background` | `oklch(0.9651 0.0045 84)` | `oklch(0.2075 0.012 262)` | fondo |
-| `surface` | `oklch(0.9832 0.0028 84)` | `oklch(0.245 0.013 262)` | tarjetas, paneles |
-| `text` | `oklch(0.235 0.011 55)` | `oklch(0.925 0.007 84)` | tinta (texto) |
-| `ink-soft` | `oklch(0.475 0.014 60)` | `oklch(0.71 0.012 80)` | texto secundario |
-| `line` | `oklch(0.885 0.007 80)` | `oklch(0.315 0.012 262)` | filos de 1 px |
-| `accent` | `oklch(0.385 0.055 255)` | `oklch(0.5 0.07 252)` | tinta estilográfica: acción primaria, selección |
-| `wax` | `oklch(0.545 0.155 35)` | `oklch(0.64 0.14 35)` | **lacre**: grabando, en vivo |
-| `brass` | `oklch(0.62 0.085 85)` | `oklch(0.72 0.08 85)` | latón: detalles mínimos, muy escaso |
+| Token        | Claro                     | Oscuro                    | Uso                                             |
+| ------------ | ------------------------- | ------------------------- | ----------------------------------------------- |
+| `background` | `oklch(0.9651 0.0045 84)` | `oklch(0.2075 0.012 262)` | fondo                                           |
+| `surface`    | `oklch(0.9832 0.0028 84)` | `oklch(0.245 0.013 262)`  | tarjetas, paneles                               |
+| `text`       | `oklch(0.235 0.011 55)`   | `oklch(0.925 0.007 84)`   | tinta (texto)                                   |
+| `ink-soft`   | `oklch(0.475 0.014 60)`   | `oklch(0.71 0.012 80)`    | texto secundario                                |
+| `line`       | `oklch(0.885 0.007 80)`   | `oklch(0.315 0.012 262)`  | filos de 1 px                                   |
+| `accent`     | `oklch(0.385 0.055 255)`  | `oklch(0.5 0.07 252)`     | tinta estilográfica: acción primaria, selección |
+| `wax`        | `oklch(0.545 0.155 35)`   | `oklch(0.64 0.14 35)`     | **lacre**: grabando, en vivo                    |
+| `brass`      | `oklch(0.62 0.085 85)`    | `oklch(0.72 0.08 85)`     | latón: detalles mínimos, muy escaso             |
 
 Regla: el acento aparece en acciones primarias, selección y estado; nunca como
 decoración. El lacre (`wax`) es exclusivo del estado «grabando/en vivo»: cuando
@@ -98,5 +98,5 @@ teclado pasa a ser el plan B.
 
 Scribe es un fork comercial de [Handy](https://github.com/cjpais/Handy)
 (MIT, de CJ Pais). La atribución se mantiene en LICENSE y README. Ser código
-abierto no es un pie de página: es el argumento de privacidad — *auditable,
-no prometido*.
+abierto no es un pie de página: es el argumento de privacidad — _auditable,
+no prometido_.

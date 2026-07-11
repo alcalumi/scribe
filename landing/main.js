@@ -9,7 +9,10 @@ const V = "1.0.0";
 const A = `https://github.com/alcalumi/scribe/releases/download/v${V}`;
 const DL = {
   mac: { href: `${A}/Scribe_${V}_aarch64.dmg`, label: "Descargar para Mac" },
-  win: { href: `${A}/Scribe_${V}_x64-setup.exe`, label: "Descargar para Windows" },
+  win: {
+    href: `${A}/Scribe_${V}_x64-setup.exe`,
+    label: "Descargar para Windows",
+  },
 };
 const esWindows = /Windows/i.test(navigator.userAgent);
 const main = document.getElementById("cta-main");
@@ -85,4 +88,3 @@ if (pill && typed && !reduceMotion) {
 } else if (pill) {
   pill.classList.add("grabando"); // versión estática: onda en lacre, frase completa
 }
-

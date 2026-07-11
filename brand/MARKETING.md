@@ -5,16 +5,16 @@
 
 ## 1. El mercado, en una tabla
 
-| Producto | Precio | Local/Nube | Plataformas | Punto débil |
-|---|---|---|---|---|
-| Wispr Flow | $15/mes | Nube | Mac, Windows | Suscripción cara; privacidad cuestionada |
-| Superwhisper | $8.49/mes o $249 lifetime | Local | Solo Mac | Buggy; lifetime carísimo |
-| MacWhisper | €59 único | Local | Solo Mac | Transcriptor de ficheros, no dictado fluido |
-| VoiceInk | $25–49 único | Local | Solo Mac (Apple Silicon) | Estética funcional; sin Windows |
-| Aqua Voice | $10/mes | Nube | Mac, Windows | Solo nube |
-| Monologue | $144/año | Nube | Solo Mac | Suscripción; sin Windows |
-| BetterDictation | $39 único | Local | Solo Mac | Marketing flojo; poca tracción |
-| Dictado nativo (Apple/Windows) | Gratis | Mixto | Nativo | Malo con acentos y puntuación |
+| Producto                       | Precio                    | Local/Nube | Plataformas              | Punto débil                                 |
+| ------------------------------ | ------------------------- | ---------- | ------------------------ | ------------------------------------------- |
+| Wispr Flow                     | $15/mes                   | Nube       | Mac, Windows             | Suscripción cara; privacidad cuestionada    |
+| Superwhisper                   | $8.49/mes o $249 lifetime | Local      | Solo Mac                 | Buggy; lifetime carísimo                    |
+| MacWhisper                     | €59 único                 | Local      | Solo Mac                 | Transcriptor de ficheros, no dictado fluido |
+| VoiceInk                       | $25–49 único              | Local      | Solo Mac (Apple Silicon) | Estética funcional; sin Windows             |
+| Aqua Voice                     | $10/mes                   | Nube       | Mac, Windows             | Solo nube                                   |
+| Monologue                      | $144/año                  | Nube       | Solo Mac                 | Suscripción; sin Windows                    |
+| BetterDictation                | $39 único                 | Local      | Solo Mac                 | Marketing flojo; poca tracción              |
+| Dictado nativo (Apple/Windows) | Gratis                    | Mixto      | Nativo                   | Malo con acentos y puntuación               |
 
 **El hueco**: pago único + 100 % local + Mac **y** Windows + diseño cuidado +
 español-first. Nadie cubre las cinco casillas. Scribe las cubre todas.
@@ -96,8 +96,8 @@ Por orden de esfuerzo/retorno esperado:
    mención orgánica; la carta de presentación es la historia («fork comercial
    de un proyecto open source, hecho en España, sin suscripción»).
 4. **Product Hunt.** Un martes o miércoles, asset pack cuidado, primera hora
-   de la mañana PT. El ángulo para audiencia global: *one-time purchase,
-   fully local, Mac + Windows*. PH no da clientes hispanos, da credibilidad y
+   de la mañana PT. El ángulo para audiencia global: _one-time purchase,
+   fully local, Mac + Windows_. PH no da clientes hispanos, da credibilidad y
    backlink.
 5. **Reddit.** r/macapps (donde VoiceInk se hizo popular: audiencia probada
    para esta categoría) y comunidades tech en español. Formato: post honesto
@@ -161,6 +161,7 @@ Lanzamiento (plan de semana 1) + Product Hunt en semana 2. Todo el esfuerzo
 en demo, soporte y conversación. Capturar cada testimonio.
 
 **Días 15-45 — Aprender.**
+
 - Activar el pago (19 €) con descuento de early access limitado en tiempo.
 - 2 posts técnicos/mes (local vs. nube con datos de latencia; por qué el
   dictado nativo falla en español). SEO en español: «dictado por voz Mac»,
@@ -170,6 +171,7 @@ en demo, soporte y conversación. Capturar cada testimonio.
 - Probar TikTok/Shorts con 8-10 vídeos; decidir con datos si sigue.
 
 **Días 46-90 — Consolidar.**
+
 - Doblar en los 2 canales que mejor conviertan; matar el resto sin pena.
 - Página de comparativas honestas (Scribe vs. Wispr Flow / VoiceInk /
   Superwhisper) — mencionando lo que ellos hacen mejor; la honestidad es la

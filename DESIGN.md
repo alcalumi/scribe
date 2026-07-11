@@ -2,22 +2,22 @@
 
 Fuente de verdad de tokens: `src/styles/theme.css` (pares claro/oscuro en OKLCH),
 registrados como utilidades Tailwind en `src/App.css`. La app sigue el registro
-*product*; la landing, el registro *brand*.
+_product_; la landing, el registro _brand_.
 
 ## Tokens y utilidades Tailwind
 
-| Utilidad | Rol |
-|---|---|
-| `bg-background` | fondo de ventana (porcelana / tintero) |
-| `bg-surface` | tarjetas, paneles, popovers — un paso más claro que el fondo |
-| `text-text` | tinta: texto principal |
-| `text-ink-soft` | texto secundario, descripciones, metadatos |
-| `border-line` | todos los filos: 1 px, sin excepciones |
-| `bg-accent` / `text-accent` | tinta estilográfica: acción primaria, selección, foco |
-| `bg-accent-strong` | hover de la acción primaria |
-| `bg-wax` / `text-wax` | lacre — SOLO estados «grabando / en vivo / escuchando» |
-| `text-brass` | latón: detalle ornamental mínimo (≤1 por pantalla) |
-| Legacy: `bg-background-ui` ≙ accent; `logo-primary` ≙ accent-soft; `mid-gray` ≙ gris cálido | no usar en código nuevo |
+| Utilidad                                                                                    | Rol                                                          |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| `bg-background`                                                                             | fondo de ventana (porcelana / tintero)                       |
+| `bg-surface`                                                                                | tarjetas, paneles, popovers — un paso más claro que el fondo |
+| `text-text`                                                                                 | tinta: texto principal                                       |
+| `text-ink-soft`                                                                             | texto secundario, descripciones, metadatos                   |
+| `border-line`                                                                               | todos los filos: 1 px, sin excepciones                       |
+| `bg-accent` / `text-accent`                                                                 | tinta estilográfica: acción primaria, selección, foco        |
+| `bg-accent-strong`                                                                          | hover de la acción primaria                                  |
+| `bg-wax` / `text-wax`                                                                       | lacre — SOLO estados «grabando / en vivo / escuchando»       |
+| `text-brass`                                                                                | latón: detalle ornamental mínimo (≤1 por pantalla)           |
+| Legacy: `bg-background-ui` ≙ accent; `logo-primary` ≙ accent-soft; `mid-gray` ≙ gris cálido | no usar en código nuevo                                      |
 
 ## Tipografía
 

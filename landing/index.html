@@ -1,187 +1,358 @@
 <!doctype html>
 <html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Scribe — Habla. Ya está escrito.</title>
-  <meta name="description" content="Dictado por voz 100% local para Mac y Windows. Pulsa un atajo, habla, y el texto aparece donde estaba el cursor. Sin nube, sin suscripción. 19 € una vez." />
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <meta property="og:title" content="Scribe — Habla. Ya está escrito." />
-  <meta property="og:description" content="Dictado por voz 100% local para Mac y Windows. Sin nube, sin suscripción. 19 € una vez." />
-  <meta property="og:image" content="https://scribe-alcalumis-projects.vercel.app/assets/og-image.png" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://scribe-alcalumis-projects.vercel.app/" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="theme-color" content="#f5f3ef" />
-  <link rel="preload" href="assets/fonts/eb-garamond-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="assets/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scribe — Habla. Ya está escrito.</title>
+    <meta
+      name="description"
+      content="Dictado por voz 100% local para Mac y Windows. Pulsa un atajo, habla, y el texto aparece donde estaba el cursor. Sin nube, sin suscripción. 19 € una vez."
+    />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <meta property="og:title" content="Scribe — Habla. Ya está escrito." />
+    <meta
+      property="og:description"
+      content="Dictado por voz 100% local para Mac y Windows. Sin nube, sin suscripción. 19 € una vez."
+    />
+    <meta
+      property="og:image"
+      content="https://scribe-alcalumis-projects.vercel.app/assets/og-image.png"
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://scribe-alcalumis-projects.vercel.app/"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#f5f3ef" />
+    <link
+      rel="preload"
+      href="assets/fonts/eb-garamond-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="assets/fonts/hanken-grotesk-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="wordmark" href="#">
+        <svg class="nib" viewBox="0 0 512 512" aria-hidden="true">
+          <path
+            fill="currentColor"
+            fill-rule="evenodd"
+            d="M256 470C236 416 198 372 176 318C158 276 146 240 146 204C146 160 150 122 166 106C190 86 222 80 256 80C290 80 322 86 346 106C362 122 366 160 366 204C366 240 354 276 336 318C314 372 276 416 256 470ZM250 271.4A30 30 0 1 1 262 271.4L258.5 448L256 460L253.5 448Z"
+          />
+        </svg>
+        <span>Scribe</span>
+      </a>
+      <nav class="top-nav">
+        <a href="https://github.com/alcalumi/scribe" rel="noopener">Código</a>
+        <a class="btn btn-small" href="#descargar">Descargar</a>
+      </nav>
+    </header>
 
-<header class="top">
-  <a class="wordmark" href="#">
-    <svg class="nib" viewBox="0 0 512 512" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M256 470C236 416 198 372 176 318C158 276 146 240 146 204C146 160 150 122 166 106C190 86 222 80 256 80C290 80 322 86 346 106C362 122 366 160 366 204C366 240 354 276 336 318C314 372 276 416 256 470ZM250 271.4A30 30 0 1 1 262 271.4L258.5 448L256 460L253.5 448Z"/></svg>
-    <span>Scribe</span>
-  </a>
-  <nav class="top-nav">
-    <a href="https://github.com/alcalumi/scribe" rel="noopener">Código</a>
-    <a class="btn btn-small" href="#descargar">Descargar</a>
-  </nav>
-</header>
+    <main>
+      <!-- ═══════════ HERO ═══════════ -->
+      <section class="hero">
+        <h1>Habla.<br /><em>Ya está escrito.</em></h1>
+        <p class="lede">
+          Scribe convierte tu voz en texto en cualquier aplicación de tu Mac o
+          de tu PC. Pulsas un atajo, dices lo que piensas y sigues a lo tuyo.
+          Sin nube. Sin cuota mensual. Sin ruido.
+        </p>
 
-<main>
-
-  <!-- ═══════════ HERO ═══════════ -->
-  <section class="hero">
-    <h1>Habla.<br /><em>Ya está escrito.</em></h1>
-    <p class="lede">
-      Scribe convierte tu voz en texto en cualquier aplicación de tu Mac
-      o de tu PC. Pulsas un atajo, dices lo que piensas y sigues a lo tuyo.
-      Sin nube. Sin cuota mensual. Sin ruido.
-    </p>
-
-    <div class="cta-row" id="descargar">
-      <a class="btn btn-primary" id="cta-main" href="https://github.com/alcalumi/scribe/releases/download/v1.0.0/Scribe_1.0.0_aarch64.dmg">Descargar para Mac</a>
-      <a class="btn btn-ghost" id="cta-alt" href="https://github.com/alcalumi/scribe/releases/download/v1.0.0/Scribe_1.0.0_x64-setup.exe">también para Windows&nbsp;→</a>
-    </div>
-    <p class="fine">Early access: hoy gratis · después 19&nbsp;€, una sola vez · para siempre<br />
-    <a class="fine-link" href="https://github.com/alcalumi/scribe/releases/latest" rel="noopener">Todas las descargas</a> — Mac Intel, Windows ARM y Linux incluidos</p>
-
-    <!-- La píldora: el overlay de Scribe, vivo -->
-    <div class="demo" aria-label="Demostración: Scribe escuchando y escribiendo">
-      <div class="pill" id="pill">
-        <span class="dot" aria-hidden="true"></span>
-        <div class="wave" aria-hidden="true">
-          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <div class="cta-row" id="descargar">
+          <a
+            class="btn btn-primary"
+            id="cta-main"
+            href="https://github.com/alcalumi/scribe/releases/download/v1.0.0/Scribe_1.0.0_aarch64.dmg"
+            >Descargar para Mac</a
+          >
+          <a
+            class="btn btn-ghost"
+            id="cta-alt"
+            href="https://github.com/alcalumi/scribe/releases/download/v1.0.0/Scribe_1.0.0_x64-setup.exe"
+            >también para Windows&nbsp;→</a
+          >
         </div>
-      </div>
-      <p class="typed"><span id="typed-text">Esto no lo he tecleado: lo he dicho en voz alta.</span><span class="caret" aria-hidden="true"></span></p>
-    </div>
-  </section>
+        <p class="fine">
+          Early access: hoy gratis · después 19&nbsp;€, una sola vez · para
+          siempre<br />
+          Mac con Apple Silicon; ¿el tuyo es Intel?
+          <a
+            class="fine-link"
+            href="https://github.com/alcalumi/scribe/releases/download/v1.0.0/Scribe_1.0.0_x64.dmg"
+            >descárgalo aquí</a
+          >
+          ·
+          <a
+            class="fine-link"
+            href="https://github.com/alcalumi/scribe/releases/latest"
+            rel="noopener"
+            >todas las descargas</a
+          >
+          — Windows ARM y Linux incluidos
+        </p>
 
-  <!-- ═══════════ CÓMO FUNCIONA ═══════════ -->
-  <section class="how">
-    <div class="how-step">
-      <p class="how-verb">Pulsa</p>
-      <p>Un atajo global, el que tú elijas. Scribe espera en la barra de menús, callado, sin ocupar sitio.</p>
-      <p class="kbd-row"><kbd>⌥</kbd><kbd>espacio</kbd></p>
-    </div>
-    <div class="how-step">
-      <p class="how-verb">Habla</p>
-      <p>En español, en inglés, o mezclando los dos sin avisar. La puntuación se pone sola.</p>
-    </div>
-    <div class="how-step">
-      <p class="how-verb">Sigue</p>
-      <p>El texto aparece donde estaba el cursor: tu correo, tu editor, ese WhatsApp Web. Cualquier app.</p>
-    </div>
-  </section>
+        <!-- La píldora: el overlay de Scribe, vivo -->
+        <div
+          class="demo"
+          aria-label="Demostración: Scribe escuchando y escribiendo"
+        >
+          <div class="pill" id="pill">
+            <span class="dot" aria-hidden="true"></span>
+            <div class="wave" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i
+              ><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+          </div>
+          <p class="typed">
+            <span id="typed-text"
+              >Esto no lo he tecleado: lo he dicho en voz alta.</span
+            ><span class="caret" aria-hidden="true"></span>
+          </p>
+        </div>
+      </section>
 
-  <!-- ═══════════ EL TINTERO (privacidad) ═══════════ -->
-  <section class="tintero">
-    <h2>Tu voz no sale<br />de tu ordenador.</h2>
-    <p class="tintero-lede">
-      No porque lo prometamos: porque no hay servidor al que enviarla.
-      La transcripción ocurre en tu máquina, con modelos que viven en tu disco.
-    </p>
-    <ul class="facts">
-      <li>
-        <strong>Cero nube</strong>
-        <span>Funciona igual con el wifi apagado. Pruébalo en modo avión.</span>
-      </li>
-      <li>
-        <strong>Código abierto</strong>
-        <span>Auditable línea a línea. La privacidad no se promete: se comprueba.</span>
-      </li>
-      <li>
-        <strong>Sin cuenta</strong>
-        <span>Ni registro, ni email, ni analítica. Descargas, abres, hablas.</span>
-      </li>
-    </ul>
-  </section>
+      <!-- ═══════════ CÓMO FUNCIONA ═══════════ -->
+      <section class="how">
+        <div class="how-step">
+          <p class="how-verb">Pulsa</p>
+          <p>
+            Un atajo global, el que tú elijas. Scribe espera en la barra de
+            menús, callado, sin ocupar sitio.
+          </p>
+          <p class="kbd-row"><kbd>⌥</kbd><kbd>espacio</kbd></p>
+        </div>
+        <div class="how-step">
+          <p class="how-verb">Habla</p>
+          <p>
+            En español, en inglés, o mezclando los dos sin avisar. La puntuación
+            se pone sola.
+          </p>
+        </div>
+        <div class="how-step">
+          <p class="how-verb">Sigue</p>
+          <p>
+            El texto aparece donde estaba el cursor: tu correo, tu editor, ese
+            WhatsApp Web. Cualquier app.
+          </p>
+        </div>
+      </section>
 
-  <!-- ═══════════ LA APP ═══════════ -->
-  <section class="app">
-    <h2>Una app de dictado que no<br /><em>parece</em> una app de dictado.</h2>
-    <p class="app-lede">
-      Porcelana, tinta y nada más. Scribe se disuelve en tu escritorio:
-      lo único que ves es una píldora discreta cuando hablas, y tus
-      palabras apareciendo donde tienen que aparecer.
-    </p>
-    <figure class="shot">
-      <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="assets/app-dark.png" />
-        <img src="assets/app-light.png" alt="Ventana de ajustes de Scribe: porcelana, tipografía serena y una barra lateral con el plumín." width="980" height="700" loading="lazy" />
-      </picture>
-      <figcaption>Los ajustes, tal cual son. En claro, porcelana; en oscuro, el tintero.</figcaption>
-    </figure>
-    <ul class="quiet-features">
-      <li>Español e inglés de fábrica, y más de veinte idiomas con los modelos Whisper</li>
-      <li>Historial local de todo lo dictado, con su audio</li>
-      <li>Modelos a elegir: rápidos para notas, grandes para textos serios</li>
-      <li>Nativa en Apple Silicon y en Windows</li>
-    </ul>
-  </section>
+      <!-- ═══════════ EL TINTERO (privacidad) ═══════════ -->
+      <section class="tintero">
+        <h2>Tu voz no sale<br />de tu ordenador.</h2>
+        <p class="tintero-lede">
+          No porque lo prometamos: porque no hay servidor al que enviarla. La
+          transcripción ocurre en tu máquina, con modelos que viven en tu disco.
+        </p>
+        <ul class="facts">
+          <li>
+            <strong>Cero nube</strong>
+            <span
+              >Funciona igual con el wifi apagado. Pruébalo en modo avión.</span
+            >
+          </li>
+          <li>
+            <strong>Código abierto</strong>
+            <span
+              >Auditable línea a línea. La privacidad no se promete: se
+              comprueba.</span
+            >
+          </li>
+          <li>
+            <strong>Sin cuenta</strong>
+            <span
+              >Ni registro, ni email, ni analítica. Descargas, abres,
+              hablas.</span
+            >
+          </li>
+        </ul>
+      </section>
 
-  <!-- ═══════════ PRECIO ═══════════ -->
-  <section class="precio">
-    <div class="precio-card">
-      <p class="precio-num"><span class="cifra">19&nbsp;€</span> <span class="una-vez">una vez</span></p>
-      <p class="precio-lede">Se compra como se compraba el software: una vez, y es tuyo. Actualizaciones de la 1.x incluidas, hasta tres ordenadores, sin cuenta.</p>
-      <ul class="compara">
-        <li><span>Wispr Flow</span><span>144&nbsp;$ al año, cada año</span></li>
-        <li><span>Superwhisper</span><span>249&nbsp;$ el «lifetime»</span></li>
-        <li><span>Scribe</span><span class="compara-scribe">19&nbsp;€ y ya está</span></li>
-      </ul>
-      <div class="precio-launch">
-        <p><strong>Semana de lanzamiento:</strong> descárgalo hoy gratis. Los early adopters no pagarán la 1.x nunca. Sin trampa: queremos tus quejas, no tu tarjeta.</p>
-        <a class="btn btn-primary" href="https://github.com/alcalumi/scribe/releases/latest">Descargar Scribe</a>
-      </div>
-    </div>
-  </section>
+      <!-- ═══════════ LA APP ═══════════ -->
+      <section class="app">
+        <h2>
+          Una app de dictado que no<br /><em>parece</em> una app de dictado.
+        </h2>
+        <p class="app-lede">
+          Porcelana, tinta y nada más. Scribe se disuelve en tu escritorio: lo
+          único que ves es una píldora discreta cuando hablas, y tus palabras
+          apareciendo donde tienen que aparecer.
+        </p>
+        <figure class="shot">
+          <picture>
+            <source
+              media="(prefers-color-scheme: dark)"
+              srcset="assets/app-dark.png"
+            />
+            <img
+              src="assets/app-light.png"
+              alt="Ventana de ajustes de Scribe: porcelana, tipografía serena y una barra lateral con el plumín."
+              width="980"
+              height="700"
+              loading="lazy"
+            />
+          </picture>
+          <figcaption>
+            Los ajustes, tal cual son. En claro, porcelana; en oscuro, el
+            tintero.
+          </figcaption>
+        </figure>
+        <ul class="quiet-features">
+          <li>
+            Español e inglés de fábrica, y más de veinte idiomas con los modelos
+            Whisper
+          </li>
+          <li>Historial local de todo lo dictado, con su audio</li>
+          <li>
+            Modelos a elegir: rápidos para notas, grandes para textos serios
+          </li>
+          <li>Nativa en Apple Silicon y en Windows</li>
+        </ul>
+      </section>
 
-  <!-- ═══════════ FAQ ═══════════ -->
-  <section class="faq">
-    <h2>Lo que preguntarías<br />antes de instalarlo.</h2>
-    <details>
-      <summary>¿De verdad es gratis hoy?</summary>
-      <p>Sí. Durante el lanzamiento, Scribe es gratis: descárgalo y es tuyo. Cuando activemos la venta (19&nbsp;€, pago único), los que llegasteis primero seguiréis sin pagar la 1.x. Preferimos mil usuarios exigentes hoy que cien clientes callados mañana.</p>
-    </details>
-    <details>
-      <summary>macOS dice que no puede abrir la app</summary>
-      <p>Clic derecho sobre Scribe.app → <em>Abrir</em> → <em>Abrir</em>. Solo la primera vez. Aún no hemos pagado el peaje del certificado de Apple (99&nbsp;$ al año); la app es exactamente la misma con o sin él, y está en camino.</p>
-    </details>
-    <details>
-      <summary>¿Qué pasa con mi voz?</summary>
-      <p>Se transcribe en tu máquina y se queda en tu máquina. Scribe no tiene servidores, ni cuentas, ni analítica. Si quieres comprobarlo: apaga el wifi y sigue funcionando igual. O léete el código, que está publicado.</p>
-    </details>
-    <details>
-      <summary>¿Qué necesito?</summary>
-      <p>Un Mac (Apple Silicon o Intel, macOS 10.15 en adelante) o un PC con Windows 10/11. Y unos 2&nbsp;GB de disco para el modelo de voz, que se descarga la primera vez.</p>
-    </details>
-    <details>
-      <summary>¿Dicta bien en español?</summary>
-      <p>Es su idioma de casa. Acentos, eñes, signos de apertura, code-switching al inglés a mitad de frase: para eso lo hemos hecho. Los modelos Whisper y Parakeet que usa Scribe están entre lo mejor que existe para el español.</p>
-    </details>
-    <details>
-      <summary>¿No es esto un fork de Handy?</summary>
-      <p>Lo es, y a mucha honra. Scribe está construido sobre <a href="https://github.com/cjpais/Handy" rel="noopener">Handy</a> (MIT), de CJ Pais — gracias, CJ. Nosotros ponemos el diseño, el español, el onboarding y el soporte. El código sigue siendo abierto; si prefieres el original, adelante.</p>
-    </details>
-  </section>
+      <!-- ═══════════ PRECIO ═══════════ -->
+      <section class="precio">
+        <div class="precio-card">
+          <p class="precio-num">
+            <span class="cifra">19&nbsp;€</span>
+            <span class="una-vez">una vez</span>
+          </p>
+          <p class="precio-lede">
+            Se compra como se compraba el software: una vez, y es tuyo.
+            Actualizaciones de la 1.x incluidas, hasta tres ordenadores, sin
+            cuenta.
+          </p>
+          <ul class="compara">
+            <li>
+              <span>Wispr Flow</span><span>144&nbsp;$ al año, cada año</span>
+            </li>
+            <li>
+              <span>Superwhisper</span><span>249&nbsp;$ el «lifetime»</span>
+            </li>
+            <li>
+              <span>Scribe</span
+              ><span class="compara-scribe">19&nbsp;€ y ya está</span>
+            </li>
+          </ul>
+          <div class="precio-launch">
+            <p>
+              <strong>Semana de lanzamiento:</strong> descárgalo hoy gratis. Los
+              early adopters no pagarán la 1.x nunca. Sin trampa: queremos tus
+              quejas, no tu tarjeta.
+            </p>
+            <a
+              class="btn btn-primary"
+              href="https://github.com/alcalumi/scribe/releases/latest"
+              >Descargar Scribe</a
+            >
+          </div>
+        </div>
+      </section>
 
-</main>
+      <!-- ═══════════ FAQ ═══════════ -->
+      <section class="faq">
+        <h2>Lo que preguntarías<br />antes de instalarlo.</h2>
+        <details>
+          <summary>¿De verdad es gratis hoy?</summary>
+          <p>
+            Sí. Durante el lanzamiento, Scribe es gratis: descárgalo y es tuyo.
+            Cuando activemos la venta (19&nbsp;€, pago único), los que
+            llegasteis primero seguiréis sin pagar la 1.x. Preferimos mil
+            usuarios exigentes hoy que cien clientes callados mañana.
+          </p>
+        </details>
+        <details>
+          <summary>macOS dice que no puede abrir la app</summary>
+          <p>
+            Solo la primera vez: abre
+            <em>Ajustes del Sistema → Privacidad y seguridad</em>, baja hasta el
+            aviso sobre Scribe y pulsa <em>Abrir de todos modos</em>. (En macOS
+            14 o anterior basta con clic derecho sobre Scribe.app →
+            <em>Abrir</em>.) Aún no hemos pagado el peaje del certificado de
+            Apple (99&nbsp;$ al año); la app es exactamente la misma con o sin
+            él, y está en camino.
+          </p>
+        </details>
+        <details>
+          <summary>Windows (SmartScreen) avisa al instalar</summary>
+          <p>
+            Pulsa <em>Más información → Ejecutar de todas formas</em>. El
+            instalador aún no lleva firma de código (el certificado está en la
+            lista de la compra); el aviso desaparecerá con ella. Mientras tanto,
+            puedes verificar el instalador tú mismo: el código es abierto.
+          </p>
+        </details>
+        <details>
+          <summary>¿Qué pasa con mi voz?</summary>
+          <p>
+            Se transcribe en tu máquina y se queda en tu máquina. Scribe no
+            tiene servidores, ni cuentas, ni analítica. Si quieres comprobarlo:
+            apaga el wifi y sigue funcionando igual. O léete el código, que está
+            publicado.
+          </p>
+        </details>
+        <details>
+          <summary>¿Qué necesito?</summary>
+          <p>
+            Un Mac (Apple Silicon o Intel, macOS 10.15 en adelante) o un PC con
+            Windows 10/11. Y unos 2&nbsp;GB de disco para el modelo de voz, que
+            se descarga la primera vez.
+          </p>
+        </details>
+        <details>
+          <summary>¿Dicta bien en español?</summary>
+          <p>
+            Es su idioma de casa. Acentos, eñes, signos de apertura,
+            code-switching al inglés a mitad de frase: para eso lo hemos hecho.
+            Los modelos Whisper y Parakeet que usa Scribe están entre lo mejor
+            que existe para el español.
+          </p>
+        </details>
+        <details>
+          <summary>¿No es esto un fork de Handy?</summary>
+          <p>
+            Lo es, y a mucha honra. Scribe está construido sobre
+            <a href="https://github.com/cjpais/Handy" rel="noopener">Handy</a>
+            (MIT), de CJ Pais — gracias, CJ. Nosotros ponemos el diseño, el
+            español, el onboarding y el soporte. El código sigue siendo abierto;
+            si prefieres el original, adelante.
+          </p>
+        </details>
+      </section>
+    </main>
 
-<footer class="foot">
-  <svg class="nib" viewBox="0 0 512 512" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M256 470C236 416 198 372 176 318C158 276 146 240 146 204C146 160 150 122 166 106C190 86 222 80 256 80C290 80 322 86 346 106C362 122 366 160 366 204C366 240 354 276 336 318C314 372 276 416 256 470ZM250 271.4A30 30 0 1 1 262 271.4L258.5 448L256 460L253.5 448Z"/></svg>
-  <p>Scribe — dictado por voz, privado y precioso.</p>
-  <p class="foot-fine">
-    Hecho sobre <a href="https://github.com/cjpais/Handy" rel="noopener">Handy</a> (MIT). Gracias, CJ&nbsp;Pais.
-    · <a href="https://github.com/alcalumi/scribe" rel="noopener">Código fuente</a>
-    · © 2026 Scribe
-  </p>
-</footer>
+    <footer class="foot">
+      <svg class="nib" viewBox="0 0 512 512" aria-hidden="true">
+        <path
+          fill="currentColor"
+          fill-rule="evenodd"
+          d="M256 470C236 416 198 372 176 318C158 276 146 240 146 204C146 160 150 122 166 106C190 86 222 80 256 80C290 80 322 86 346 106C362 122 366 160 366 204C366 240 354 276 336 318C314 372 276 416 256 470ZM250 271.4A30 30 0 1 1 262 271.4L258.5 448L256 460L253.5 448Z"
+        />
+      </svg>
+      <p>Scribe — dictado por voz, privado y precioso.</p>
+      <p class="foot-fine">
+        Hecho sobre
+        <a href="https://github.com/cjpais/Handy" rel="noopener">Handy</a>
+        (MIT). Gracias, CJ&nbsp;Pais. ·
+        <a href="https://github.com/alcalumi/scribe" rel="noopener"
+          >Código fuente</a
+        >
+        · © 2026 Scribe
+      </p>
+    </footer>
 
-<script src="main.js" defer></script>
-</body>
+    <script src="main.js" defer></script>
+  </body>
 </html>

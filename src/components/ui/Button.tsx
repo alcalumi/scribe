@@ -32,8 +32,7 @@ export const Button: React.FC<ButtonProps> = ({
       "text-white bg-red-600 border-red-600 hover:bg-red-700 hover:border-red-700 active:bg-red-800 active:border-red-800",
     "danger-ghost":
       "text-red-600 border-transparent hover:bg-red-600/10 active:bg-red-600/15",
-    ghost:
-      "text-current border-transparent hover:bg-text/5 active:bg-text/10",
+    ghost: "text-current border-transparent hover:bg-text/5 active:bg-text/10",
   };
 
   const sizeClasses = {

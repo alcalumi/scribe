@@ -9,7 +9,8 @@ transcripción ocurre entera en tu ordenador; tu voz no sale de tu máquina.
 - **100 % local.** No hay servidor al que enviar tu voz. No porque lo
   prometamos: porque no existe.
 - **Se compra una vez.** Pago único. Sin suscripción, sin cuenta, sin nube.
-- **Mac y Windows.** Apple Silicon e Intel en macOS; Windows x64.
+- **Mac y Windows.** Apple Silicon e Intel en macOS; Windows x64 y ARM64.
+  También publicamos builds de Linux (`.deb`, `.rpm`, `.AppImage`).
 - **Código abierto.** Lo que Scribe hace con tu voz se puede leer, no solo
   creer.
 
@@ -100,9 +101,8 @@ define como «la app de speech-to-text más forkeable» — y Scribe es,
 literalmente, eso: un fork que le debe el motor, la arquitectura y buena
 parte de su filosofía de privacidad.
 
-Gracias, CJ, y gracias a la comunidad de Handy. Si buscas la versión libre,
-gratuita y multiplataforma (incluye Linux), [Handy](https://handy.computer)
-sigue ahí y es estupenda.
+Gracias, CJ, y gracias a la comunidad de Handy. Si buscas el proyecto
+original, [Handy](https://handy.computer) sigue ahí y es estupendo.
 
 Scribe usa su propia marca (nombre, logo e iconos) porque la marca Handy no
 forma parte de la licencia de su código. Scribe no está afiliado a Handy ni

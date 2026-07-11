@@ -12,16 +12,16 @@ Se compra una vez. Es tuyo para siempre. Sin suscripción, sin cuenta, sin
 
 Contra el mercado real:
 
-| Producto | Precio | Equivalencia |
-|---|---|---|
-| Wispr Flow | $15/mes | Scribe cuesta ~6 semanas de Wispr Flow. A los 2 meses, Scribe es más barato — para siempre |
-| Monologue | $144/año | Scribe cuesta el 13 % de UN año |
-| Aqua Voice | $10/mes | Scribe se paga en menos de 2 meses |
-| Superwhisper | $249 lifetime | El lifetime de Scribe cuesta 13 veces menos |
-| VoiceInk | $25–49 único | Por debajo del favorito de Reddit, y con Windows incluido |
-| MacWhisper | €59 único | Un tercio del precio, y es dictado fluido, no transcriptor de ficheros |
-| BetterDictation | $39 único | La mitad, con mejor diseño y español-first |
-| Dictado nativo | Gratis | Nuestro competidor real. 19 € es lo que cuesta que los acentos y las comas funcionen |
+| Producto        | Precio        | Equivalencia                                                                               |
+| --------------- | ------------- | ------------------------------------------------------------------------------------------ |
+| Wispr Flow      | $15/mes       | Scribe cuesta ~6 semanas de Wispr Flow. A los 2 meses, Scribe es más barato — para siempre |
+| Monologue       | $144/año      | Scribe cuesta el 13 % de UN año                                                            |
+| Aqua Voice      | $10/mes       | Scribe se paga en menos de 2 meses                                                         |
+| Superwhisper    | $249 lifetime | El lifetime de Scribe cuesta 13 veces menos                                                |
+| VoiceInk        | $25–49 único  | Por debajo del favorito de Reddit, y con Windows incluido                                  |
+| MacWhisper      | €59 único     | Un tercio del precio, y es dictado fluido, no transcriptor de ficheros                     |
+| BetterDictation | $39 único     | La mitad, con mejor diseño y español-first                                                 |
+| Dictado nativo  | Gratis        | Nuestro competidor real. 19 € es lo que cuesta que los acentos y las comas funcionen       |
 
 Posición deliberada: **el pago único más barato del mercado**. Podemos
 permitírnoslo porque no tenemos coste marginal — la transcripción corre en la
@@ -50,13 +50,17 @@ el early access es gratis, y quienes nos acompañen ahora tendrán descuento
 de lanzamiento». Prometer el precio desde el día 1 evita la sensación de
 cebo y filtra a la audiencia correcta (anti-suscripción).
 
-Compromiso con los early adopters: descuento de lanzamiento (p. ej. 12,99 €
-las primeras 2 semanas de venta) anunciado por la lista de correo antes que
-en ningún otro sitio.
+Compromiso con los early adopters — y es promesa pública ya hecha en la
+landing y en las notas de la v1.0.0, así que es irrevocable: **quien instale
+Scribe durante el early access no pagará nunca la 1.x**. Mecanismo: las
+instalaciones existentes jamás llevarán gate de licencia en updates 1.x; el
+pago de 19 € aplica solo a descargas nuevas desde que se active la venta.
+(El descuento adicional de lanzamiento vía lista de correo queda pendiente
+de tener captura de email en la landing; hoy no existe.)
 
 ## Fase 2 — Siguiente paso: activar el pago
 
-**Infraestructura**: Lemon Squeezy o Paddle, como *merchant of record* —
+**Infraestructura**: Lemon Squeezy o Paddle, como _merchant of record_ —
 ellos gestionan IVA/impuestos por país, facturas y disputas, cosa crítica
 vendiendo desde España a toda Hispanoamérica. Ambos soportan claves de
 licencia con API de activación/validación. Decidir entre ambos al implementar
@@ -69,7 +73,7 @@ solo España; un precio único en euros nos dejaría fuera de México, Argentina
 o Colombia. Ambas plataformas lo soportan de serie por geolocalización.
 
 **Validación de licencia**: coherente con la marca — activación puntual
-(online una vez, 2-3 dispositivos), nunca *phone-home* periódico ni funciones
+(online una vez, 2-3 dispositivos), nunca _phone-home_ periódico ni funciones
 degradadas sin conexión. Una app que presume de no tocar la red no puede
 exigir internet para arrancar.
 
