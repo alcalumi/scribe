@@ -220,6 +220,23 @@ jobs:
           echo "CERT_ID=$CERT_ID" >> $GITHUB_ENV
           echo "Certificate imported."
 
+      # El bundler de Tauri intenta importar APPLE_CERTIFICATE al llavero en
+      # cuanto la variable EXISTE, aunque esté vacía — por eso estas variables
+      # se exportan solo cuando se firma, en vez de pasarlas siempre al step
+      # de build con valor ''.
+      - name: Export Apple signing environment
+        if: contains(inputs.platform, 'macos') && inputs.sign-binaries
+        run: |
+          {
+            echo "APPLE_ID=${{ secrets.APPLE_ID }}"
+            echo "APPLE_ID_PASSWORD=${{ secrets.APPLE_ID_PASSWORD }}"
+            echo "APPLE_PASSWORD=${{ secrets.APPLE_PASSWORD }}"
+            echo "APPLE_TEAM_ID=${{ secrets.APPLE_TEAM_ID }}"
+            echo "APPLE_CERTIFICATE=${{ secrets.APPLE_CERTIFICATE }}"
+            echo "APPLE_CERTIFICATE_PASSWORD=${{ secrets.APPLE_CERTIFICATE_PASSWORD }}"
+            echo "APPLE_SIGNING_IDENTITY=${CERT_ID}"
+          } >> "$GITHUB_ENV"
+
       - name: Patch asset name pattern
         id: patch-release-name
         shell: bash
@@ -483,15 +500,10 @@ jobs:
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          APPLE_ID: ${{ inputs.sign-binaries && secrets.APPLE_ID || '' }}
-          APPLE_ID_PASSWORD: ${{ inputs.sign-binaries && secrets.APPLE_ID_PASSWORD || '' }}
-          APPLE_PASSWORD: ${{ inputs.sign-binaries && secrets.APPLE_PASSWORD || '' }}
-          APPLE_TEAM_ID: ${{ inputs.sign-binaries && secrets.APPLE_TEAM_ID || '' }}
-          APPLE_CERTIFICATE: ${{ inputs.sign-binaries && secrets.APPLE_CERTIFICATE || '' }}
-          APPLE_CERTIFICATE_PASSWORD: ${{ inputs.sign-binaries && secrets.APPLE_CERTIFICATE_PASSWORD || '' }}
-          APPLE_SIGNING_IDENTITY: ${{ inputs.sign-binaries && env.CERT_ID || '' }}
-          # La firma del updater (minisign) es independiente de la firma de
-          # binarios de Apple/Windows: createUpdaterArtifacts la exige siempre.
+          # Las APPLE_* llegan vía GITHUB_ENV desde "Export Apple signing
+          # environment", y solo cuando sign-binaries=true. La firma del
+          # updater (minisign) es independiente de la firma de binarios:
+          # createUpdaterArtifacts la exige siempre.
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
         with:
