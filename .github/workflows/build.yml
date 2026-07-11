@@ -19,7 +19,7 @@ on:
       asset-prefix:
         required: false
         type: string
-        default: "handy"
+        default: "scribe"
       asset-name-pattern:
         required: false
         type: string
@@ -47,9 +47,6 @@ on:
         required: false
         type: boolean
         default: false
-
-env:
-  TSC_VERSION: "0.9.0"
 
 jobs:
   build:
@@ -155,18 +152,6 @@ jobs:
         with:
           version: 1.4.309.0
           cache: true
-
-      - name: Cache trusted-signing-cli
-        if: contains(inputs.platform, 'windows') && inputs.sign-binaries
-        id: cache-tsc
-        uses: actions/cache@v5
-        with:
-          path: ~/.cargo/bin/trusted-signing-cli*
-          key: trusted-signing-cli-${{ env.TSC_VERSION }}-${{ runner.os }}-${{ runner.arch }}
-
-      - name: Install trusted-signing-cli
-        if: contains(inputs.platform, 'windows') && inputs.sign-binaries && steps.cache-tsc.outputs.cache-hit != 'true'
-        run: cargo install trusted-signing-cli@${{ env.TSC_VERSION }}
 
       - name: Prepare Vulkan SDK for Ubuntu 24.04
         if: contains(inputs.platform, 'ubuntu-24.04') && !contains(inputs.platform, 'arm')
@@ -303,7 +288,7 @@ jobs:
           #     statically linking libomp.
           echo "TRANSCRIBE_CMAKE_ARGS=-DGGML_NATIVE=OFF -DGGML_OPENMP=OFF" >> $env:GITHUB_ENV
 
-      # Bundle the VC++ runtime app-local so Handy starts on machines without a
+      # Bundle the VC++ runtime app-local so Scribe starts on machines without a
       # current Microsoft redistributable. build.rs stages DLLs from these dirs
       # into transcribe-libs/, using the same VS install that compiled the code.
       # x64 also needs vcomp140.dll for ggml OpenMP; ARM64 disables OpenMP.
@@ -409,7 +394,7 @@ jobs:
       # MLAS runtime CPU dispatch, so it runs everywhere and dispatches to AVX2/AVX-512
       # kernels when present (perf parity on capable CPUs). build.rs stages
       # onnxruntime.dll into transcribe-libs/, which tauri.windows.conf.json bundles
-      # beside Handy.exe. ARM64 is excluded (all modern CPUs; keeps its static
+      # beside Scribe.exe. ARM64 is excluded (all modern CPUs; keeps its static
       # ORT posture).
       # NOTE: sourced from Microsoft's GitHub release; can be re-hosted on
       # blob.handy.computer to match the macOS/Linux steps.
@@ -454,7 +439,7 @@ jobs:
       # transcribe-cpp-sys's CMake install during the cargo build, but nothing
       # ships them. Pre-build the app so that install dir exists, then expose it
       # via LD_LIBRARY_PATH so the AppImage's linuxdeploy can resolve
-      # libtranscribe.so (a NEEDED of `handy`) while bundling. tauri-action
+      # libtranscribe.so (a NEEDED of `scribe`) while bundling. tauri-action
       # reuses this compile incrementally. TRANSCRIBE_LIBDIR is consumed by the
       # AppImage post-processing step to co-locate the dlopen'd ggml modules.
       - name: Pre-build and locate transcribe-cpp backend libs (Linux)
@@ -484,7 +469,7 @@ jobs:
           ls -la "$LIBDIR"
           echo "TRANSCRIBE_LIBDIR=$LIBDIR" >> "$GITHUB_ENV"
           echo "LD_LIBRARY_PATH=$LIBDIR${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" >> "$GITHUB_ENV"
-          # linuxdeploy resolves `handy`'s NEEDED libs via `ldd` and HARD-FAILS
+          # linuxdeploy resolves `scribe`'s NEEDED libs via `ldd` and HARD-FAILS
           # on an unresolved one (it does not warn-and-skip). libtranscribe.so
           # lives only in the cargo build tree, so also publish it (and the ggml
           # libs it pulls in) to the system linker cache — belt-and-suspenders
@@ -505,11 +490,10 @@ jobs:
           APPLE_CERTIFICATE: ${{ inputs.sign-binaries && secrets.APPLE_CERTIFICATE || '' }}
           APPLE_CERTIFICATE_PASSWORD: ${{ inputs.sign-binaries && secrets.APPLE_CERTIFICATE_PASSWORD || '' }}
           APPLE_SIGNING_IDENTITY: ${{ inputs.sign-binaries && env.CERT_ID || '' }}
-          AZURE_CLIENT_ID: ${{ inputs.sign-binaries && secrets.AZURE_CLIENT_ID || '' }}
-          AZURE_CLIENT_SECRET: ${{ inputs.sign-binaries && secrets.AZURE_CLIENT_SECRET || '' }}
-          AZURE_TENANT_ID: ${{ inputs.sign-binaries && secrets.AZURE_TENANT_ID || '' }}
-          TAURI_SIGNING_PRIVATE_KEY: ${{ inputs.sign-binaries && secrets.TAURI_SIGNING_PRIVATE_KEY || '' }}
-          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ inputs.sign-binaries && secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD || '' }}
+          # La firma del updater (minisign) es independiente de la firma de
+          # binarios de Apple/Windows: createUpdaterArtifacts la exige siempre.
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
         with:
           tagName: ${{ inputs.release-id && format('v{0}', steps.get-version.outputs.version) || '' }}
           releaseName: ${{ inputs.release-id && format('v{0}', steps.get-version.outputs.version) || '' }}
@@ -525,10 +509,10 @@ jobs:
           echo "=== Frameworks contents ==="
           ls -la "$APP/Contents/Frameworks/" | grep onnx || true
           echo "=== Binary linked libs ==="
-          otool -L "$APP/Contents/MacOS/handy" | grep onnx || true
+          otool -L "$APP/Contents/MacOS/Scribe" | grep onnx || true
           echo "=== Checking all @rpath deps are satisfied ==="
           # Extract every @rpath lib the binary needs
-          otool -L "$APP/Contents/MacOS/handy" | grep '@rpath/' | awk '{print $1}' | while read dep; do
+          otool -L "$APP/Contents/MacOS/Scribe" | grep '@rpath/' | awk '{print $1}' | while read dep; do
             libname=$(basename "$dep")
             if [ ! -f "$APP/Contents/Frameworks/$libname" ]; then
               echo "MISSING: $libname not found in Frameworks/"
@@ -625,7 +609,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          # The runtime smoke test launches the packaged handy binary, which links
+          # The runtime smoke test launches the packaged scribe binary, which links
           # GTK (via tao) even for the headless --list-devices path and therefore
           # needs a display to start. CI runners are headless, so provide a virtual
           # X server via xvfb-run.
@@ -661,11 +645,11 @@ jobs:
           smoke_binary() {
             local root="$1"
             local label="$2"
-            # Run under a virtual X server: handy initializes GTK on startup even
+            # Run under a virtual X server: scribe initializes GTK on startup even
             # on the headless --list-devices path, which fails without a display.
             HANDY_NO_GTK_LAYER_SHELL=1 \
             LD_LIBRARY_PATH="${root}/usr/lib${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}" \
-              xvfb-run -a "${root}/usr/bin/handy" --list-devices >/tmp/handy-package-smoke.log
+              xvfb-run -a "${root}/usr/bin/scribe" --list-devices >/tmp/scribe-package-smoke.log
             echo "${label} --list-devices smoke passed"
           }
 
@@ -674,7 +658,7 @@ jobs:
               echo "Auditing deb package: ${deb}"
               listing="$(mktemp)"
               dpkg-deb -c "$deb" > "$listing"
-              require_pattern "$listing" 'usr/bin/handy$' "handy binary"
+              require_pattern "$listing" 'usr/bin/scribe$' "scribe binary"
               require_pattern "$listing" 'usr/lib/libtranscribe\.so' "transcribe runtime library"
               require_pattern "$listing" 'usr/lib/libggml-cpu.*\.so' "ggml CPU backend module"
               if [[ "${{ inputs.platform }}" == *"ubuntu-22.04"* && "${{ inputs.target }}" == "x86_64-unknown-linux-gnu" ]]; then
@@ -696,7 +680,7 @@ jobs:
               echo "Auditing rpm package: ${rpm_pkg}"
               listing="$(mktemp)"
               rpm -qpl "$rpm_pkg" > "$listing"
-              require_pattern "$listing" '/usr/bin/handy$' "handy binary"
+              require_pattern "$listing" '/usr/bin/scribe$' "scribe binary"
               require_pattern "$listing" '/usr/lib/libtranscribe\.so' "transcribe runtime library"
               require_pattern "$listing" '/usr/lib/libggml-cpu.*\.so' "ggml CPU backend module"
               rm -f "$listing"
@@ -707,12 +691,12 @@ jobs:
             for appimage in "${BUNDLE_DIR}"/appimage/*.AppImage; do
               echo "Auditing AppImage package: ${appimage}"
               workdir="$(mktemp -d)"
-              cp "$appimage" "${workdir}/Handy.AppImage"
-              chmod +x "${workdir}/Handy.AppImage"
+              cp "$appimage" "${workdir}/Scribe.AppImage"
+              chmod +x "${workdir}/Scribe.AppImage"
               (
                 cd "$workdir"
-                ./Handy.AppImage --appimage-extract >/dev/null
-                require_path "squashfs-root/usr/bin/handy" "AppImage handy binary"
+                ./Scribe.AppImage --appimage-extract >/dev/null
+                require_path "squashfs-root/usr/bin/scribe" "AppImage scribe binary"
                 require_path "squashfs-root/usr/lib/libtranscribe.so" "AppImage transcribe runtime library"
                 if ! find "squashfs-root/usr/lib" -name 'libggml-cpu*.so*' | grep -q .; then
                   echo "ERROR: missing AppImage ggml CPU backend module" >&2
@@ -785,9 +769,9 @@ jobs:
           function Assert-PackageContents {
             param([string]$Root, [string]$Label)
 
-            $handy = Get-ChildItem $Root -Filter "handy.exe" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
-            if (-not $handy) {
-              throw "$Label package is missing handy.exe"
+            $scribe = Get-ChildItem $Root -Filter "Scribe.exe" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
+            if (-not $scribe) {
+              throw "$Label package is missing Scribe.exe"
             }
             foreach ($dll in $stagedDlls) {
               if (-not (Get-ChildItem $Root -Filter $dll.Name -Recurse -ErrorAction SilentlyContinue)) {
@@ -795,9 +779,9 @@ jobs:
               }
             }
 
-            & $handy.FullName --list-devices | Out-Host
+            & $scribe.FullName --list-devices | Out-Host
             if ($LASTEXITCODE -ne 0) {
-              throw "$Label handy.exe --list-devices failed"
+              throw "$Label Scribe.exe --list-devices failed"
             }
           }
 

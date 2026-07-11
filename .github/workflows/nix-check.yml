@@ -7,27 +7,11 @@
 # Setting up a Cachix binary cache would further reduce full-build times.
 
 name: "nix build check"
+# Solo manual mientras el packaging de Nix siga apuntando al binario antiguo
+# "handy" (flake.nix pname/mainProgram y nix/*.nix pendientes del rename a
+# "scribe"). Reactivar los triggers de push/PR al actualizar el flake.
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - "flake.nix"
-      - "flake.lock"
-      - ".nix/**"
-      - "bun.lock"
-      - "src-tauri/**"
-      - "src/**"
-      - ".github/workflows/**"
-  pull_request:
-    paths:
-      - "flake.nix"
-      - "flake.lock"
-      - ".nix/**"
-      - "bun.lock"
-      - "src-tauri/**"
-      - "src/**"
-      - ".github/workflows/**"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
